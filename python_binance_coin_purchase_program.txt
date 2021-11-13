@@ -1,0 +1,79 @@
+# WOULD REALLY LIKE TO SEE THIS WORK.
+# I KNOW IT IS MISSING A ALOT, BUT THIS IS MY FIRST CODING ATTEMPT
+# BASIC IDEA:  BUY COIN.  IF COIN VALUE GOES DOWN, BUY MORE.  IF COIN VALUE GOES UP, SELL COIN.  REPEAT.
+#
+# PLEASE FEEL FREE TO CONTACT ME VIA datCHAT APP.  james_bank
+# https://dat.chat/u/james_bank/UTih1TUJ
+
+
+import config_crypto
+from binace.client import Client
+from binance.enums import *
+client = Client(config_crypto.api_key,config_crypto.api_secret, tld='us')
+print("connected to the matrix")
+
+#base url
+wss://stream.binance.com:9443
+
+
+coin_symbol = input("Enter stock symbol")
+
+coin_symbol_available_coin = PULL FROM BINANCE    # HAVING VERY DIFFICULT TIME JUST FIGURING OUT HOW
+coin_symbol_total_coin = PULL FROM BINANCE        # TO CODE PULLING THE FOLLOWING INFORMATION FROM BINANCE 
+coin_symbol_cost_basis = PULL FROM BINANCE        # FROM MY PERSONAL ACCOUNT.
+
+buy_quantity = coin_symbol_total_coin * 2         # 2 IS A CONSTANT           THESE VARIABLES WILL BE USED TO PLACE
+buy_price = coin_symbol_cost_basis * .9           # .9 IS A CONSTANT          ALL BUY AND SELL ORDERS AND NEED TO BE
+sell_quantity = coin_symbol_available_coin        # YES, ALL OF IT.           POPULATED FROM BINANCE ACCOUNT
+sell_price = coin_symbol_cost_basis * 1.2         # 1.2 IS A CONSTANT
+
+
+if coin_symbol_total_coin = 0 AND coin_symbol_cost_basis < 5000     # DO NOT WANT O TRY TO BUY MORE COIN IF I HAVE
+    def buy():                                                          # 5000 OR MORE ALREADY INVESTED IN COIN
+        order = client.create_order(
+        symbol='coin_symbol',
+        side=SIDE_BUY,
+        type=ORDER_TYPE_MARKET,
+        timeInForce=TIME_IN_FORCE_GTC,
+        price= 2.00                                                 # 2.00 IS A CONSTANT.
+)
+elif crypto_symbol_total_coin > 0           # IF COIN BALANCE IS GREATER THAN ZERO, THERE SHOULD BE A
+    def sell():                             # SELL ORDER AND BUY ORDER PENDING SIMULTAINOUSLY
+        order = client.create_order(        # 
+        symbol='coin_symbol',               #                        
+        side=SIDE_SELL,                     #
+        type=ORDER_TYPE_LIMIT,              #
+        timeInForce=TIME_IN_FORCE_GTC,      #
+        quantity='sell_quantity',           #
+        price='sell_price'                  #
+)                                           #
+    def buy():                              #
+        order = client.create_order(        #
+        symbol='coin_symbol',               #
+        side=SIDE_BUY,                      #
+        type=ORDER_TYPE_LIMIT,              #
+        timeInForce=TIME_IN_FORCE_GTC,      #
+        quantity='buy_quantity',            #
+        price='buy_price'                   #
+)
+
+# WHEN ANY ORDER IS FILLED (BUY OR SELL), I NEED THIS NEXT FUNCTION TO.. FUNCTION
+DELETE /api/v3/openOrders                   # CANCEL ALL OPEN ORDERS
+# REFRESH ALL VARIABLES/BALANCES
+# RUN PROGRAM AGAIN THE TOP (LINE 23)
+
+
+# Order status (status):
+
+# Status                Description
+# NEW                   The order has been accepted by the engine.
+# PARTIALLY_FILLED      A part of the order has been filled.
+# FILLED                The order has been completed.
+# CANCELED              The order has been canceled by the user.
+# PENDING_CANCEL        Currently unused
+# REJECTED              The order was not accepted by the engine and not processed.
+# EXPIRED               The order was canceled according to the order type's rules
+#                       (e.g. LIMIT FOK orders with no fill, LIMIT IOC or MARKET orders
+#                       that partially fill)
+#                       or by the exchange, (e.g. orders canceled during liquidation,
+#                       orders canceled during maintenance)

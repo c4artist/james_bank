@@ -11,8 +11,8 @@ wss://stream.binance.com:9443
 coin_symbol = input("Enter stock symbol")
 
 available_coin = PULL FROM BINANCE    # HAVING VERY DIFFICULT TIME JUST FIGURING OUT HOW
-total_coin = PULL FROM BINANCE        # TO CODE PULLING THE FOLLOWING INFORMATION FROM BINANCE
-cost_basis = PULL FROM BINANCE        # FROM MY PERSONAL ACCOUNT.
+total_coin = PULL FROM BINANCE        #     TO CODE PULLING THE FOLLOWING INFORMATION FROM BINANCE
+cost_basis = PULL FROM BINANCE        #     FROM MY PERSONAL ACCOUNT.
 
 buy_quantity = total_coin * 2         # 2 IS A CONSTANT           THESE VARIABLES WILL BE USED TO PLACE
 buy_price = cost_basis * .9           # .9 IS A CONSTANT          ALL BUY AND SELL ORDERS AND NEED TO BE
@@ -30,13 +30,13 @@ if total_coin = 0
         price= 2.00                         # 2.00 IS A CONSTANT.
 )
 elif total_coin > 0 AND cost_basis < 5000   # DON'T PLACE BUY ORDER IF COST BASIS IS MORE
-    def sell():                             # THAN 5000 DOLLARS
+    def sell():                             #      THAN 5000 DOLLARS
         order = client.create_order(        #
         symbol='coin_symbol',               #
         side=SIDE_SELL,                     #
         type=ORDER_TYPE_LIMIT,              #
         timeInForce=TIME_IN_FORCE_GTC,      # IF COIN BALANCE IS GREATER THAN ZERO, THERE SHOULD BE A
-        quantity='sell_quantity',           # SELL ORDER AND BUY ORDER PENDING SIMULTANEOUSLY ALWAYS
+        quantity='sell_quantity',           #      SELL ORDER AND BUY ORDER PENDING SIMULTANEOUSLY ALWAYS
         price='sell_price'                  #
 )                                           #
     def buy():                              #
@@ -59,8 +59,9 @@ else total_coin >0 AND cost_basis => 5000   # IF COST BASIS IS GREATER THAN $500
         price='sell_price'
 )
 
-# NEXT FUNCTION TRIGGERS WHEN ANY ORDER IS FILLED (BUY OR SELL).  I DON'T KNOW WHO TO 
+# NEXT FUNCTION TRIGGERS WHEN ANY ORDER IS FILLED (BUY OR SELL).  I DON'T KNOW HOW TO
+#      CODE THIS.  TOTALLY LOST.
 DELETE /api/v3/openOrders               # CANCEL ALL OPEN ORDERS
                                         # REFRESH ALL VARIABLES/BALANCES
                                         # RUN PROGRAM AGAIN THE TOP (LINE 23)
-                                        # JUST START OVER FROM THE BEGINNING
+                                        #      JUST START OVER FROM THE BEGINNING

@@ -1,26 +1,45 @@
-import config_crypto
-from binace.client import Client
-from binance.enums import *
-client = Client(config_crypto.api_key,config_crypto.api_secret, tld='us')
+from binance.client import Client
+import cpm_config
+
+client = Client(cpm_config.api_key, cpm_config.api_secret, tld='us')
 print("connected to the matrix")
 
+info = client.get_account()
+bal= info['balances']
+for b in bal:
+    if float(b['free']) > 0:
+        print(b)
+
+from binance.enums import *
+
+
+import websocket, json
 #base url
-wss://stream.binance.com:9443
+https://api.binance.us/api/v3/userDataStream
+coin_symbol = 'ampusd'
+interval = '1m'
+socket = f'wss://stream.binance.com:9443/ws/{coin_symbol}@kline_{interval}'
+socket
+             # Create a listenKey
+{
+  "listenKey": "pqia91ma19a5s61cv6a81va65sdf19v8a65a1a5s61cv6a81va65sdf19v8a65a1"   # JUST COPY AND PASTED??
+}
+PUT /api/v3/userDataStream             # Ping/Keep-alive a listenKey
 
 
-coin_symbol = input("Enter stock symbol")
-
-available_coin = PULL FROM BINANCE    # HAVING VERY DIFFICULT TIME JUST FIGURING OUT HOW
-total_coin = PULL FROM BINANCE        #     TO CODE PULLING THE FOLLOWING INFORMATION FROM BINANCE
-cost_basis = PULL FROM BINANCE        #     FROM MY PERSONAL ACCOUNT.
-
-buy_quantity = total_coin * 2         # 2 IS A CONSTANT           THESE VARIABLES WILL BE USED TO PLACE
-buy_price = cost_basis * .9           # .9 IS A CONSTANT          ALL BUY AND SELL ORDERS AND NEED TO BE
-sell_quantity = available_coin        # YES, ALL OF IT.           POPULATED FROM BINANCE ACCOUNT
-sell_price = cost_basis * 1.2         # 1.2 IS A CONSTANT
 
 
-if total_coin = 0
+available_coin = PULL FROM BINANCE      # HAVING VERY DIFFICULT TIME JUST FIGURING OUT HOW
+total_coin = PULL FROM BINANCE          #     TO CODE PULLING THE FOLLOWING INFORMATION FROM BINANCE
+cost_basis = PULL FROM BINANCE          #     FROM MY PERSONAL ACCOUNT.
+
+buy_quantity = total_coin * 2           # 2 IS A CONSTANT           THESE VARIABLES WILL BE USED TO PLACE
+buy_price = cost_basis * .9             # .9 IS A CONSTANT          ALL BUY AND SELL ORDERS AND NEED TO BE
+sell_quantity = available_coin          # YES, ALL OF IT.           POPULATED FROM BINANCE ACCOUNT
+sell_price = cost_basis * 1.2           # 1.2 IS A CONSTANT
+
+
+if total_coin = 0                           # LINE 42
     def buy():                              # 5000 OR MORE ALREADY INVESTED IN COIN
         order = client.create_order(
         symbol='coin_symbol',
@@ -60,8 +79,8 @@ else total_coin >0 AND cost_basis => 5000   # IF COST BASIS IS GREATER THAN $500
 )
 
 # NEXT FUNCTION TRIGGERS WHEN ANY ORDER IS FILLED (BUY OR SELL).  I DON'T KNOW HOW TO
-#      CODE THIS.  TOTALLY LOST.
-DELETE /api/v3/openOrders               # CANCEL ALL OPEN ORDERS
-                                        # REFRESH ALL VARIABLES/BALANCES
-                                        # RUN PROGRAM AGAIN THE TOP (LINE 23)
-                                        #      JUST START OVER FROM THE BEGINNING
+# I DON'T KNOW HOW TO CODE THIS.  TOTALLY LOST.
+DELETE /api/v3/openOrders       # CANCEL ALL OPEN ORDERS
+                                # REFRESH ALL VARIABLES/BALANCES
+                                # RUN PROGRAM AGAIN THE TOP (LINE 42)
+                                # JUST START OVER FROM THE BEGINNING
